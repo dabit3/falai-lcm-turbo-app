@@ -12,7 +12,6 @@
     "@excalidraw/excalidraw": "^0.17.0",
     "@fal-ai/serverless-client": "^0.7.0",
     "@fal-ai/serverless-proxy": "^0.6.0",
-    "@tldraw/tldraw": "^2.0.0-alpha.18",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "lucide-react": "^0.294.0",
