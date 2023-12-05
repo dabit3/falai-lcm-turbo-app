@@ -4,11 +4,13 @@ import { Excalidraw, exportToBlob } from "@excalidraw/excalidraw"
 import * as fal from "@fal-ai/serverless-client"
 import Image from 'next/image'
 
+const models = ['110602490-lcm-sd15-i2i', '110602490-sdxl-turbo-realtime']
+
 fal.config({
   proxyUrl: "/api/fal/proxy",
 })
 
-const seed = Math.floor(Math.random() * 10000)
+const seed = Math.floor(Math.random() * 100000)
 const baseArgs = {
   sync_mode: true,
   num_inference_steps: 3,
@@ -17,16 +19,14 @@ const baseArgs = {
 }
 
 export default function Home() {
-  console.log('baseArgs', baseArgs)
   const [input, setInput] = useState('A cinematic shot of a baby raccoon wearing an intricate italian priest robe')
   const [image, setImage] = useState(null)
   const [localImage, setLocalImage] = useState(null)
   const [excalidrawAPI, setExcalidrawAPI] = useState<any>(null)
   const [_appState, setAppState] = useState<any>(null)
 
-  const { send } = fal.realtime.connect('110602490-sdxl-turbo-realtime', {
-    connectionKey: 'realtime-demo-nextjs-testing',
-    clientOnly: true,
+  const { send } = fal.realtime.connect(models[1], {
+    connectionKey: 'realtime-nextjs-testing-2',
     onResult(result) {
       if (result.error) return
       setImage(() => result.images[0].url)
@@ -72,6 +72,7 @@ export default function Home() {
               setAppState(appState)
               let dataUrl = await getDataUrl(appState)
               if (dataUrl !== localImage) {
+                console.log('about to send ...')
                 setLocalImage(dataUrl)
                 send({
                   ...baseArgs,
