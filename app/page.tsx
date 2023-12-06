@@ -15,7 +15,7 @@ const baseArgs = {
   seed
 }
 export default function Home() {
-  const [input, setInput] = useState('A cinematic shot of a baby raccoon wearing an intricate italian priest robe')
+  const [input, setInput] = useState('masterpice, best quality, A cinematic shot of a baby raccoon wearing an intricate italian priest robe')
   const [image, setImage] = useState(null)
   const [sceneData, setSceneData] = useState<any>(null)
   const [excalidrawAPI, setExcalidrawAPI] = useState<any>(null)
@@ -60,7 +60,7 @@ export default function Home() {
         }}
       />
       <div className='flex'>
-        <div className="w-[550px] h-[550px]">
+        <div className="w-[550px] h-[570px]">
           <Excalidraw
             excalidrawAPI={(api)=> setExcalidrawAPI(api)}
             onChange={async (elements, appState) => {
